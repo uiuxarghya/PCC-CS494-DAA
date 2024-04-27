@@ -55,9 +55,10 @@ void primMST(Graph *graph)
     for (int v = 0; v < graph->V; v++) // finds the adjacent or neighbouring vertices of the current minimum vertex
     {
       // checks for 3 conditions
-      if (graph->adj[u][v] && !mstSet[v] && graph->adj[u][v] < key[v]) // 1. whether there's an edge to an adjacent vertex ; 
-                                                          // 2. whether the edge between current vertex and adjacent vertex is added to MST
-                       // 3. whether the weight of the edge between them is less than the key value (which is originally initialized to 1000)
+      // 1. whether there's an edge to an adjacent vertex ; 
+      // 2. whether the edge between current vertex and adjacent vertex is added to MST
+      // 3. whether the weight of the edge between them is less than the key value (which is originally initialized to 1000)
+      if (graph->adj[u][v] && !mstSet[v] && graph->adj[u][v] < key[v])
       {
         parent[v] = u; // initialize the parent of the neighbouring vertex as the current vertex
         key[v] = graph->adj[u][v]; // update the key value from the adjacency matrix
