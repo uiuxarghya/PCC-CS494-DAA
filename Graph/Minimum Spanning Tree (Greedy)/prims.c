@@ -35,7 +35,7 @@ int findMinKey(int key[], bool mstSet[], int V) //finds vertex (not included in 
 void primMST(Graph *graph)
 {
   int parent[graph->V]; // array to store parent of each vertex in MST
-  int key[graph->V]; // array to weght of each vertex
+  int key[graph->V]; // array to weight of each vertex
   bool mstSet[graph->V]; // array to keep track of vertices included in the MST
 
   for (int i = 0; i < graph->V; i++)

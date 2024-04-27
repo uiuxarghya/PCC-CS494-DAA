@@ -91,7 +91,7 @@ void kruskalMST(Graph *graph)
   int e = 0; //counter for number of edges added to MST
   int i = 0; //counter for iterating over the sorted edges
 
-  mergeSort(graph->edges, 0, graph->E - 1); //sorts the edges of the graph (lb=0 ; ub=edges-1
+  mergeSort(graph->edges, 0, graph->E - 1); //sorts the edges of the graph (lb=0 ; ub=edges-1)
 
   int *parent = (int *)malloc(V * sizeof(int)); //stores parent of all vertices
 
