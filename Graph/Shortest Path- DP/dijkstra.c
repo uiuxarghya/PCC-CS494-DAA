@@ -15,21 +15,27 @@ void dijkstra(int graph[vertices][vertices], bool final[], int distance[], int p
         // find the vertex with the minimum distance which has not been finalized
         for (i = 0; i < vertices; i++)
         {
-            if (!final[i] && distance[i] < min)
+            // checks if vertex is not added to final path and its distance is less than the current minimum distance
+            if (!final[i] && distance[i] < min) 
             {
-                index = i;
-                min = distance[i];
+                index = i; // i stored in index is the vertex with minimum distance
+                min = distance[i]; // stores the minimum distance
             }
         }
-        final[index] = true; // mark the vertex as finalized
+        final[index] = true; // mark the vertex as finalized or added to shortest path
 
-        // update the distance of the adjacent vertices of the selected vertex
+        // update the distances of the adjacent vertices of the selected vertex using concept of relaxation
         for (i = 0; i < vertices; i++)
         {
+            // checks for the following conditions
+            // 1. checks if current vertex has an edge with each of the vertices (or finds its neighbours)
+            // 2. checks whether that vertex is not added to shortest path or not
+            // 3. checks if the updated distance (using relaxation) is less than the distance previously stored
+                // dist(u) + cost[u][v] < dist[v]
             if (graph[index][i] != 0 && !final[i] && (distance[index] + graph[index][i] < distance[i]))
             {
-                distance[i] = distance[index] + graph[index][i];
-                predecessor[i] = index; // set the predecessor for the vertex
+                distance[i] = distance[index] + graph[index][i]; // dist(v) = dist(u) + cost[u][v]
+                predecessor[i] = index; // set the predecessor for the vertex as the current minimum vertex
             }
         }
     }
