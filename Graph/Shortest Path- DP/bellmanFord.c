@@ -8,7 +8,8 @@ void bellmanFord(int graph[edges][3], int edges, int distance[], int source)
 {
     distance[source] = 0; // set the source distance to 0
     int count;
-    for (count = 1; count < vertices; count++) // loop to relax all edges (vertices-1) times
+
+    for (count = 1; count < vertices; count++) // loop to relax all edges (vertices-1) times (different from Dijkstra's algorithm)
     {
         int i, u, v, wt;
         for (i = 0; i < edges; i++)
@@ -16,8 +17,9 @@ void bellmanFord(int graph[edges][3], int edges, int distance[], int source)
             u = graph[i][0]; // start vertex of the edge
             v = graph[i][1]; // end vertex of the edge
             wt = graph[i][2]; // weight of the edge
-            // relax the edge if possible
-            if (distance[u] != INT_MAX && (distance[u] + wt) < distance[v])
+            // distance[u] = shortest distance to vertex u
+            // distance[v] = shortest distance to vertex v
+            if (distance[u] != INT_MAX && (distance[u] + wt) < distance[v]) // relax the edge if possible
                 distance[v] = distance[u] + wt;
         }
     }
