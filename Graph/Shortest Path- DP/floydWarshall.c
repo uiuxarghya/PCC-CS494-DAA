@@ -3,10 +3,10 @@
 #include<limits.h>
 #define INF 99999
 
-void printPath(int src,int dest, int n, int pred[][n])
+void printPath(int src, int dest, int n, int pred[][n])
 {
 	// base case for recursive function
-	if (src==dest) // checks if control has reached the destination after starting from the source
+	if (src==dest) // checks if control has reached the source after starting from the destination
 	{
 		printf("%d",src); // prints the source vertex
 		return;
