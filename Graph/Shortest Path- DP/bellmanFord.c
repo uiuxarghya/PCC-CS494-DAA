@@ -4,7 +4,7 @@
 int vertices, edges;
 
 // function to perform the bellman-ford algorithm
-void bellmanFord(int graph[edges][3], int edges, int distance[], int source)
+void bellmanFord(int graph[][3], int edges, int distance[], int source)
 {
     distance[source] = 0; // set the source distance to 0
     int count;
@@ -19,24 +19,34 @@ void bellmanFord(int graph[edges][3], int edges, int distance[], int source)
             wt = graph[i][2]; // weight of the edge
             // distance[u] = shortest distance to vertex u
             // distance[v] = shortest distance to vertex v
+            // wt = cost to move from u to v
             if (distance[u] != INT_MAX && (distance[u] + wt) < distance[v]) // relax the edge if possible
-                distance[v] = distance[u] + wt;
+                distance[v] = distance[u] + wt; 
+        }
+    }
+
+    // Check for negative weight cycles
+    for (int i = 0; i < edges; i++) // repeats the above same process one more time
+    {
+        int u = graph[i][0];
+        int v = graph[i][1];
+        int wt = graph[i][2];
+
+        // if graph contains a negative weight cycle where weight value of edges just keeps on decreasing
+        if (distance[u] != INT_MAX && distance[u] + wt < distance[v]) 
+        {
+            printf("Graph contains negative weight cycle\n"); // then it will display the following 
+            return; // and come out of the loop
         }
     }
 }
 
 // function to print the shortest distances from the source to all other vertices
-void printDistance(int distance[], int source)
+void printDistance(int distance[], int source) 
 {
-    int i;
-    printf("\nThe Shortest Distances from Source %d are : \n", source);
-    printf("Vertex\tDistance\n");
-    for (i = 0; i < vertices; i++)
-    {
-        if (i == source) // skip printing the source itself
-            continue;
-        printf("%d     \t%d\n", i, distance[i]); // print the vertex and its distance from the source
-    }
+    printf("Vertex   Distance from Source\n");
+    for (int i = 0; i < vertices; i++)
+        printf("%d\t\t%d\n", i, distance[i]);
 }
 
 int main()
