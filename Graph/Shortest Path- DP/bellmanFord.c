@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <limits.h>
 
-int vertices, edges;
 
 // function to perform the bellman-ford algorithm
-void bellmanFord(int graph[][3], int edges, int distance[], int source)
+void bellmanFord(int graph[][3], int vertices, int edges, int distance[], int source)
 {
     distance[source] = 0; // set the source distance to 0
     int count;
@@ -19,9 +18,8 @@ void bellmanFord(int graph[][3], int edges, int distance[], int source)
             wt = graph[i][2]; // weight of the edge
             // distance[u] = shortest distance to vertex u
             // distance[v] = shortest distance to vertex v
-            // wt = cost to move from u to v
             if (distance[u] != INT_MAX && (distance[u] + wt) < distance[v]) // relax the edge if possible
-                distance[v] = distance[u] + wt; 
+                distance[v] = distance[u] + wt;
         }
     }
 
@@ -42,7 +40,7 @@ void bellmanFord(int graph[][3], int edges, int distance[], int source)
 }
 
 // function to print the shortest distances from the source to all other vertices
-void printDistance(int distance[], int source) 
+void printDistance(int distance[], int source, int vertices) 
 {
     printf("Vertex   Distance from Source\n");
     for (int i = 0; i < vertices; i++)
@@ -51,6 +49,7 @@ void printDistance(int distance[], int source)
 
 int main()
 {
+    int vertices,edges;
     printf("Enter the no. of Vertices : ");
     scanf("%d", &vertices); // input number of vertices
     int distance[vertices];
@@ -65,7 +64,7 @@ int main()
         distance[i] = INT_MAX; // initialize distances to infinity
     printf("Enter the Source vertex : ");
     scanf("%d", &source); // input the source vertex
-    bellmanFord(graph, edges, distance, source); // run the bellman-ford algorithm
-    printDistance(distance, source); // print the results
+    bellmanFord(graph, vertices, edges, distance, source); // run the bellman-ford algorithm
+    printDistance(distance, source, vertices); // print the results
     return 0;
 }
