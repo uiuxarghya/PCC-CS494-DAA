@@ -44,7 +44,7 @@ void printPath(int predecessor[], int v, int source)
 {
   if (v == source - 1)
   {
-    printf("%d ", source);
+    printf("%d->", source);
     return;
   }
   printPath(predecessor, predecessor[v], source);
