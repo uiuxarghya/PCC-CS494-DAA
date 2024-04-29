@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <limits.h>
 
-
 // function to perform the bellman-ford algorithm
 void bellmanFord(int graph[][3], int vertices, int edges, int distance[], int source)
 {
