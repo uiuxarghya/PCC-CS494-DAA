@@ -48,6 +48,7 @@ Any suggestions and/or improvements are welcome. Please create a pull request or
 ## Authors
 
 - [@uiuxarghya](https://www.github.com/uiuxarghya)
+- [@psychomita](https://www.github.com/psychomita)
 
 ## License
 
